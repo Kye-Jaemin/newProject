@@ -1,0 +1,44 @@
+[
+  {
+    "category": "culture",
+    "difficulty": 1,
+    "text": "'모나리자'를 그린 화가는?",
+    "choices": [
+      "미켈란젤로",
+      "레오나르도 다빈치",
+      "라파엘로",
+      "빈센트 반 고흐"
+    ],
+    "answerIndex": 1,
+    "explanation": "모나리자는 레오나르도 다빈치의 작품입니다.",
+    "source": "Musée du Louvre 'Mona Lisa'"
+  },
+  {
+    "category": "culture",
+    "difficulty": 2,
+    "text": "소설 '어린 왕자'의 작가는?",
+    "choices": [
+      "앙투안 드 생텍쥐페리",
+      "빅토르 위고",
+      "알베르 카뮈",
+      "쥘 베른"
+    ],
+    "answerIndex": 0,
+    "explanation": "어린 왕자는 1943년 생텍쥐페리가 발표한 작품입니다.",
+    "source": "브리태니커 'The Little Prince'"
+  },
+  {
+    "category": "culture",
+    "difficulty": 2,
+    "text": "교향곡 '운명'으로 불리는 5번 교향곡의 작곡가는?",
+    "choices": [
+      "모차르트",
+      "바흐",
+      "베토벤",
+      "쇼팽"
+    ],
+    "answerIndex": 2,
+    "explanation": "'운명'은 베토벤의 교향곡 제5번 다단조의 별칭입니다.",
+    "source": "브리태니커 'Symphony No. 5 (Beethoven)'"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "category": "science",
+    "difficulty": 1,
+    "text": "물의 화학식은?",
+    "choices": [
+      "CO2",
+      "H2O",
+      "O2",
+      "NaCl"
+    ],
+    "answerIndex": 1,
+    "explanation": "물은 수소 원자 2개와 산소 원자 1개로 이루어진 H2O입니다.",
+    "source": "중학교 과학 교과서"
+  },
+  {
+    "category": "science",
+    "difficulty": 1,
+    "text": "태양계에서 태양과 가장 가까운 행성은?",
+    "choices": [
+      "금성",
+      "지구",
+      "화성",
+      "수성"
+    ],
+    "answerIndex": 3,
+    "explanation": "수성은 태양계 행성 중 태양에 가장 가까운 궤도를 돕니다.",
+    "source": "NASA Solar System Exploration 'Mercury'"
+  },
+  {
+    "category": "science",
+    "difficulty": 2,
+    "text": "원소 기호 'Fe'가 나타내는 원소는?",
+    "choices": [
+      "불소",
+      "철",
+      "금",
+      "납"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fe는 라틴어 ferrum에서 온 철의 원소 기호입니다.",
+    "source": "IUPAC 주기율표"
+  }
+]

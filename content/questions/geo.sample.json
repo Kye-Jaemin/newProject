@@ -1,0 +1,44 @@
+[
+  {
+    "category": "geo",
+    "difficulty": 2,
+    "text": "다음 중 아프리카 대륙에 속하지 않는 나라는?",
+    "choices": [
+      "케냐",
+      "모로코",
+      "페루",
+      "가나"
+    ],
+    "answerIndex": 2,
+    "explanation": "페루는 남아메리카에 있는 나라입니다.",
+    "source": "CIA World Factbook 'Peru'"
+  },
+  {
+    "category": "geo",
+    "difficulty": 1,
+    "text": "오스트레일리아의 수도는?",
+    "choices": [
+      "시드니",
+      "멜버른",
+      "캔버라",
+      "퍼스"
+    ],
+    "answerIndex": 2,
+    "explanation": "오스트레일리아의 수도는 캔버라입니다.",
+    "source": "CIA World Factbook 'Australia'"
+  },
+  {
+    "category": "geo",
+    "difficulty": 2,
+    "text": "다음 중 바다와 접하지 않은 내륙국은?",
+    "choices": [
+      "스위스",
+      "포르투갈",
+      "그리스",
+      "노르웨이"
+    ],
+    "answerIndex": 0,
+    "explanation": "스위스는 바다에 접하지 않은 내륙국입니다.",
+    "source": "CIA World Factbook 'Switzerland'"
+  }
+]

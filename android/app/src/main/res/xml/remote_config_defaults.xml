@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 지도서 1-3, 8장 기본값. 서버 기준값은 functions/src/config.ts 이며 함께 바꾼다. -->
+<defaultsMap>
+    <entry><key>questions_per_match</key><value>10</value></entry>
+    <entry><key>time_limit_ms</key><value>10000</value></entry>
+    <entry><key>answer_reveal_ms</key><value>1500</value></entry>
+    <entry><key>match_expiry_hours</key><value>72</value></entry>
+    <entry><key>free_plays_per_day</key><value>10</value></entry>
+    <entry><key>plays_per_reward_ad</key><value>3</value></entry>
+    <entry><key>max_reward_ads_per_day</key><value>3</value></entry>
+    <entry><key>max_hints_per_match</key><value>2</value></entry>
+</defaultsMap>

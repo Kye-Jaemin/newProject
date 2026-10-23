@@ -1,0 +1,44 @@
+[
+  {
+    "category": "sports",
+    "difficulty": 1,
+    "text": "축구 경기에서 한 팀이 경기장에 내보내는 선수 수는?",
+    "choices": [
+      "9명",
+      "10명",
+      "11명",
+      "12명"
+    ],
+    "answerIndex": 2,
+    "explanation": "축구는 골키퍼를 포함해 한 팀 11명이 경기합니다.",
+    "source": "IFAB 경기규칙 제3조"
+  },
+  {
+    "category": "sports",
+    "difficulty": 1,
+    "text": "농구에서 3점슛 라인 밖에서 넣은 슛의 점수는?",
+    "choices": [
+      "1점",
+      "2점",
+      "3점",
+      "4점"
+    ],
+    "answerIndex": 2,
+    "explanation": "3점슛 라인 바깥에서 성공한 필드골은 3점입니다.",
+    "source": "FIBA 공식 경기규칙"
+  },
+  {
+    "category": "sports",
+    "difficulty": 2,
+    "text": "올림픽 오륜기의 고리는 몇 개인가?",
+    "choices": [
+      "4개",
+      "5개",
+      "6개",
+      "7개"
+    ],
+    "answerIndex": 1,
+    "explanation": "오륜기는 다섯 개의 고리로 다섯 대륙의 결속을 상징합니다.",
+    "source": "올림픽 헌장(Olympic Charter)"
+  }
+]

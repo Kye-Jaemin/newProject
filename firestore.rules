@@ -1,0 +1,65 @@
+rules_version = '2';
+
+// 지도서 3장 "보안 규칙 핵심"
+// - questions / questionSets: 클라이언트 접근 금지 (문제는 Functions가 한 문항씩, 정답 없이 내려준다)
+// - matches, attempts, 점수·통계 필드: 서버(Functions, Admin SDK)만 쓰기
+// - matches: 참가자만 읽기
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function validNickname(n) {
+      return n is string && n.size() >= 1 && n.size() <= 12;
+    }
+
+    match /users/{uid} {
+      allow read: if isSelf(uid);
+
+      // 최초 생성: 닉네임·생성시각·푸시토큰만. 횟수·전적(dailyPlays, stats)은 서버 전용.
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasOnly(['nickname', 'createdAt', 'fcmToken'])
+        && validNickname(request.resource.data.nickname)
+        && request.resource.data.createdAt == request.time;
+
+      // 수정: 닉네임·푸시토큰만 바꿀 수 있다.
+      allow update: if isSelf(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nickname', 'fcmToken'])
+        && validNickname(request.resource.data.nickname);
+
+      allow delete: if false;
+    }
+
+    match /questions/{qid} {
+      allow read, write: if false;
+    }
+
+    match /questionSets/{setId} {
+      allow read, write: if false;
+    }
+
+    match /matches/{matchId} {
+      allow read: if signedIn() && (
+        resource.data.challenger.uid == request.auth.uid ||
+        resource.data.get('opponent', {}).get('uid', null) == request.auth.uid
+      );
+      allow write: if false;
+
+      // 상대의 응답 기록(선택·정답 여부)이 플레이 전에 노출되지 않도록 본인 기록만 읽는다.
+      match /attempts/{uid} {
+        allow read: if isSelf(uid);
+        allow write: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

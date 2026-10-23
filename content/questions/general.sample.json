@@ -1,0 +1,44 @@
+[
+  {
+    "category": "general",
+    "difficulty": 1,
+    "text": "1년 중 날짜 수가 가장 적은 달은?",
+    "choices": [
+      "1월",
+      "2월",
+      "4월",
+      "11월"
+    ],
+    "answerIndex": 1,
+    "explanation": "2월은 평년 28일, 윤년 29일로 가장 짧습니다.",
+    "source": "그레고리력"
+  },
+  {
+    "category": "general",
+    "difficulty": 1,
+    "text": "무지개의 일곱 색 중 빨강 바로 다음 색은?",
+    "choices": [
+      "노랑",
+      "주황",
+      "초록",
+      "파랑"
+    ],
+    "answerIndex": 1,
+    "explanation": "무지개는 빨강-주황-노랑-초록-파랑-남색-보라 순입니다.",
+    "source": "초등학교 과학 교과서"
+  },
+  {
+    "category": "general",
+    "difficulty": 2,
+    "text": "한글 자음 중 '기역' 다음 순서는?",
+    "choices": [
+      "디귿",
+      "리을",
+      "니은",
+      "미음"
+    ],
+    "answerIndex": 2,
+    "explanation": "한글 자음은 ㄱ(기역), ㄴ(니은), ㄷ(디귿) 순입니다.",
+    "source": "표준국어대사전 '한글 자모'"
+  }
+]

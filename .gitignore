@@ -1,0 +1,40 @@
+# --- 비밀/환경별 설정 (지도서 13장: 커밋 금지) ---
+google-services.json
+GoogleService-Info.plist
+**/secrets.properties
+**/admob.properties
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+
+# --- Firebase ---
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+emulator-data/
+
+# --- Node / Functions ---
+node_modules/
+functions/lib/
+*.tsbuildinfo
+coverage/
+
+# --- Android / Gradle ---
+.gradle/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# --- IDE / OS ---
+.idea/
+*.iml
+.vscode/
+.DS_Store

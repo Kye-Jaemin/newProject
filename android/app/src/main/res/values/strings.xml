@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">상식 퀴즈 대결</string>
+    <string name="startup_signing_in">접속 중…</string>
+    <string name="startup_ready">준비 완료</string>
+    <string name="startup_error">연결에 실패했어요</string>
+    <string name="startup_retry">다시 시도</string>
+</resources>
