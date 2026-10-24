@@ -30,6 +30,13 @@
 
 완료 기준: 빈 Compose 앱이 Firebase에 연결되고 익명 로그인 성공 → Firebase 프로젝트 연결 후 실기기/에뮬레이터에서 확인 필요
 
+### Phase 1 — 혼자 플레이
+
+- [ ] 닉네임 입력, 홈, 카테고리 선택 화면
+- [x] `getQuestion` / `submitAnswer` / `finishMatch` 구현 (+ 최소 `createMatch`, 문항 가져오기 스크립트) — [API 문서](docs/api.md)
+- [ ] 퀴즈 플레이 화면(타이머, 채점, 해설), 결과 화면
+- [x] Firestore 보안 규칙 + 에뮬레이터 테스트
+
 ## 로컬 실행
 
 ### 서버 (functions)
@@ -38,9 +45,12 @@
 cd functions
 npm install
 npm test                    # 단위 테스트
-npm run test:rules          # 보안 규칙 테스트 (Java 11+ 필요)
+npm run test:emulator       # 보안 규칙 + 게임 흐름 테스트 (Firestore 에뮬레이터, Java 11+ 필요)
 npm run validate:questions  # 문항 검증
 ```
+
+문항 넣기(에뮬레이터, 개발용 전부 승인):
+`FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 npm run import:questions -- --approve-all`
 
 에뮬레이터 전체 실행: 루트에서 `npx --prefix functions firebase emulators:start`
 (`.firebaserc`의 `demo-quizduel`은 에뮬레이터 전용 데모 프로젝트 ID)

@@ -40,11 +40,12 @@ beforeEach(async () => {
 const as = (uid: string) => env.authenticatedContext(uid).firestore();
 const anon = () => env.unauthenticatedContext().firestore();
 
-describe("questions / questionSets", () => {
+describe("questions / questionSets / questionPools", () => {
   it("로그인해도 읽기·쓰기 불가", async () => {
     await assertFails(getDoc(doc(as("alice"), "questions/q1")));
     await assertFails(setDoc(doc(as("alice"), "questions/q2"), { text: "x" }));
     await assertFails(getDoc(doc(as("alice"), "questionSets/s1")));
+    await assertFails(getDoc(doc(as("alice"), "questionPools/geo")));
   });
 });
 

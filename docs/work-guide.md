@@ -1,4 +1,4 @@
-# 비동기 상식 퀴즈 대결 앱 — 작업 지도서 (v0.1)
+# 비동기 상식 퀴즈 대결 앱 — 작업 지도서 (v0.2)
 
 - 작성일: 2026-10-22
 - 목적: 이 문서를 기준으로 MVP를 단계별로 구현한다. AI 코딩 에이전트에게 작업을 맡길 때도 이 문서를 컨텍스트로 제공한다.
@@ -78,6 +78,9 @@ questions/{qid}                  // 클라이언트 읽기 금지 (서버 전용
   status: "draft" | "approved" | "retired"
   stats: { served, correct }     // 정답률로 난이도 자동 보정
 
+questionPools/{category}         // 서버 전용. 승인 문항 qid 목록 (문항 가져오기 스크립트가 갱신)
+  qids: [qid, ...]
+
 questionSets/{setId}
   category, questionIds: [qid x 10], createdAt
 
@@ -91,8 +94,10 @@ matches/{matchId}
   expiresAt: timestamp
   shareCode: string              // 링크용 짧은 코드
 
-matches/{matchId}/attempts/{uid} // 서버만 쓰기
-  answers: [{ qid, choice, servedAt, answeredAt, correct, points }]
+matches/{matchId}/attempts/{uid} // 서버만 쓰기, 본인만 읽기
+  qids: [qid x 10]               // 진행 중에는 이 문서 하나만 읽고 쓴다 (비용 절감)
+  answers: [{ qid, choice, servedAt, answeredAt, correct, points, elapsedMs }]
+  score, finishedAt
 ```
 
 **보안 규칙 핵심**
@@ -108,8 +113,8 @@ matches/{matchId}/attempts/{uid} // 서버만 쓰기
 | createMatch | category | 한도 확인 → 문제 세트 생성/재사용 → match 생성 | matchId, shareCode |
 | joinMatch | shareCode | 유효성·만료·본인여부 확인 → opponent 등록 | matchId |
 | startGhostMatch | category | 완료 기록이 있는 세트 중 랜덤 선택 → 고스트 match 생성 | matchId |
-| getQuestion | matchId, index | 문항 내려주기(정답 제외), servedAt 기록 | text, choices |
-| submitAnswer | matchId, index, choice | 서버 시간으로 경과 계산 → 채점 → 저장 | correct, points, answerIndex, explanation |
+| getQuestion | matchId, index | 문항 내려주기(정답 제외), servedAt 기록. 첫 문항·이어하기용 | text, choices, startsInMs, remainingMs |
+| submitAnswer | matchId, index, choice | 서버 시간으로 경과 계산 → 채점 → 저장 → 다음 문항 배정 | correct, points, answerIndex, explanation, next(다음 문항) |
 | finishMatch | matchId | 총점 확정 → 양쪽 완료 시 승패 판정 → 푸시 발송 | 결과 |
 | grantRewardPlays | — | 보상형 광고 시청 후 추가 도전권 부여 | 남은 횟수 |
 | useHint | matchId, index | 오답 2개 제거 정보 반환 | 제거할 보기 인덱스 |
@@ -119,7 +124,8 @@ matches/{matchId}/attempts/{uid} // 서버만 쓰기
 1. 정답은 답을 제출한 뒤에만 클라이언트로 보낸다.
 2. 경과 시간은 서버 기준(`answeredAt - servedAt`)으로 계산한다. 10초 + 네트워크 여유 2초 초과 시 0점.
 3. 같은 문항 재요청 시 새 `servedAt`을 주지 않는다.
-4. 보상형 광고 보상은 Phase 2에서 AdMob 서버 측 확인(SSV)으로 전환한다. MVP는 클라이언트 콜백 + 하루 상한으로 대체.
+4. 다음 문항은 `submitAnswer` 응답에 함께 싣되, servedAt을 정답 공개 시간(1.5초)만큼 미래로 잡는다. (함수 호출 22회 → 13회. 정답 공개 동안 문제를 미리 볼 수 있지만 점수 상한은 같아 이득이 작다. 비정상 기록 플래그로 감시)
+5. 보상형 광고 보상은 Phase 2에서 AdMob 서버 측 확인(SSV)으로 전환한다. MVP는 클라이언트 콜백 + 하루 상한으로 대체.
 
 ## 5. 화면 구성
 
@@ -308,3 +314,4 @@ matches/{matchId}/attempts/{uid} // 서버만 쓰기
 | 버전 | 날짜 | 내용 |
 |---|---|---|
 | v0.1 | 2026-10-22 | 최초 작성 (비동기 대결 방식 확정) |
+| v0.2 | 2026-10-24 | 서버비 절감: submitAnswer가 다음 문항을 함께 반환, attempts에 qids 복사, questionPools 추가, 문항 메모리 캐시. createMatch 최소 구현을 Phase 1로 당김(혼자 플레이에 필요) |

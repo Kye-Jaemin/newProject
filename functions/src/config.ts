@@ -10,6 +10,8 @@ export interface GameRules {
   timeLimitMs: number;
   /** 네트워크 지연 여유. timeLimitMs + 이 값을 넘기면 0점 */
   networkGraceMs: number;
+  /** 답 제출 후 정답·해설을 보여주는 시간. 다음 문항의 시작 시각(servedAt)을 이만큼 늦춘다. */
+  answerRevealMs: number;
   basePoints: number;
   pointsPerRemainingSecond: number;
   matchExpiryHours: number;
@@ -24,6 +26,7 @@ export const DEFAULT_RULES: Readonly<GameRules> = Object.freeze({
   choicesPerQuestion: 4,
   timeLimitMs: 10_000,
   networkGraceMs: 2_000,
+  answerRevealMs: 1_500,
   basePoints: 100,
   pointsPerRemainingSecond: 10,
   matchExpiryHours: 72,

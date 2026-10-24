@@ -9,13 +9,14 @@
 - 매직 넘버(문항 수, 제한 시간, 광고 빈도)는 Remote Config 기본값으로 관리한다.
   서버 기준값 `functions/src/config.ts` ↔ 앱 기본값 `android/app/src/main/res/xml/remote_config_defaults.xml`을 함께 바꾼다.
 - 지도서 내용을 바꾸면 버전과 변경 이력을 갱신한다.
+- 앱이 부르는 서버 API의 입출력은 `docs/api.md`에 맞춘다. API를 바꾸면 이 문서도 함께 바꾼다.
 
 ## 확인 명령
 
 ```bash
 cd functions
 npm test                    # 채점·문항검증 단위 테스트
-npm run test:rules          # Firestore 보안 규칙 (에뮬레이터, Java 필요)
+npm run test:emulator       # 보안 규칙 + 게임 흐름 (Firestore 에뮬레이터, Java 필요)
 npm run validate:questions  # content/questions/*.json 검증
 npm run typecheck
 ```

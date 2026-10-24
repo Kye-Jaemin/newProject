@@ -9,8 +9,10 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "vitest run test/unit",
+    "test:emulator": "firebase emulators:exec --only firestore --project demo-quizduel \"vitest run --no-file-parallelism test/rules test/emulator\"",
     "test:rules": "firebase emulators:exec --only firestore --project demo-quizduel \"vitest run test/rules\"",
-    "validate:questions": "tsx scripts/validate-questions.ts ../content/questions"
+    "validate:questions": "tsx scripts/validate-questions.ts ../content/questions",
+    "import:questions": "tsx scripts/import-questions.ts"
   },
   "dependencies": {
     "firebase-admin": "^13.10.0",
